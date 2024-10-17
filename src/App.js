@@ -28,7 +28,9 @@ function App() {
   ];
   return (
     <>
-      <ExpenseItem />
+      {expensesData.map((el) => {
+        return <ExpenseItem title={el.title} date={el.date} price={el.price} />;
+      })}
     </>
   );
 }
