@@ -1,7 +1,8 @@
+import ExpenseItem from "./Components/ExpenseItem.jsx";
 function App() {
   return (
     <>
-      <h1>Hello world</h1>
+      <ExpenseItem />
     </>
   );
 }
