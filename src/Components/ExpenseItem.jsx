@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseItem.css";
 const ExpenseItem = ({ title, price, date }) => {
   const month = date.toLocaleString("en-US", { month: "long" });
   const day = date.toLocaleString("en-US", { day: "2-digit" });
   const year = date.getFullYear();
-  let newTitle = title;
+  // let newTitle = title;
+  const [newTitle, setNewTitle] = useState(title);
   const handelClick = () => {
     console.log(newTitle);
-    newTitle = "New Title !!!";
+    setNewTitle("New Title !!!");
     console.log(newTitle);
   };
   return (
