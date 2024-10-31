@@ -1,4 +1,6 @@
+import React from "react";
 import ExpensesContainer from "./Components/ExpensesContainer";
+import Epi from "./Epi";
 function App() {
   const expensesData = [
     {
@@ -28,9 +30,9 @@ function App() {
   ];
   // 5f7ra4x
   return (
-    <>
+    <Epi>
       <ExpensesContainer expensesData={expensesData} />
-    </>
+    </Epi>
   );
 }
 
