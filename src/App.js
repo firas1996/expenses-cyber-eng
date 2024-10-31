@@ -26,6 +26,7 @@ function App() {
       date: new Date(2022, 3, 11),
     },
   ];
+  // 5f7ra4x
   return (
     <>
       <ExpensesContainer expensesData={expensesData} />
