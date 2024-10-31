@@ -1,6 +1,7 @@
 import React from "react";
 import ExpensesContainer from "./Components/ExpensesContainer";
 import Epi from "./Epi";
+import AddExpense from "./Components/AddExpense";
 function App() {
   const expensesData = [
     {
@@ -31,6 +32,7 @@ function App() {
   // 5f7ra4x
   return (
     <Epi>
+      <AddExpense />
       <ExpensesContainer expensesData={expensesData} />
     </Epi>
   );
