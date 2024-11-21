@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./AddExpense.css";
-const AddExpense = () => {
+const AddExpense = ({ getData }) => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
@@ -30,10 +30,12 @@ const AddExpense = () => {
   };
   const handelSubmit = (event) => {
     event.preventDefault();
-    console.log({ title, price, date });
-    setDate("");
-    setPrice("");
-    setTitle("");
+    getData(newExpenseData);
+    setNewExpenseData({
+      title: "",
+      price: "",
+      date: "",
+    });
   };
   return (
     <div className="new-expense">

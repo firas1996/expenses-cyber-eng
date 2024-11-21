@@ -29,10 +29,12 @@ function App() {
       date: new Date(2022, 3, 11),
     },
   ];
-  // 5f7ra4x
+  const getData = (data) => {
+    console.log(data);
+  };
   return (
     <Epi>
-      <AddExpense />
+      <AddExpense getData={getData} />
       <ExpensesContainer expensesData={expensesData} />
     </Epi>
   );
