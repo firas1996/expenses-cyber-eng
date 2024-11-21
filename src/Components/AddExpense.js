@@ -4,14 +4,29 @@ const AddExpense = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
+  const [newExpenseData, setNewExpenseData] = useState({
+    title: "",
+    price: "",
+    date: "",
+  });
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
+    // setNewExpenseData({ ...newExpenseData, title: event.target.value });
+    setNewExpenseData((prevState) => {
+      return { ...prevState, title: event.target.value };
+    });
   };
   const priceChangeHandler = (event) => {
     setPrice(event.target.value);
   };
   const dateChangeHandler = (event) => {
     setDate(event.target.value);
+  };
+  const inputsChangeHandler = ({ target }) => {
+    const { name, value } = target;
+    setNewExpenseData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
   };
   const handelSubmit = (event) => {
     event.preventDefault();
@@ -29,8 +44,9 @@ const AddExpense = () => {
             <input
               required
               placeholder="Title"
-              onChange={titleChangeHandler}
-              value={title}
+              onChange={inputsChangeHandler}
+              value={newExpenseData.title}
+              name="title"
             />
           </div>
           <div className="new-expense__control">
@@ -41,8 +57,9 @@ const AddExpense = () => {
               type="number"
               min="0"
               step="0.01"
-              onChange={priceChangeHandler}
-              value={price}
+              onChange={inputsChangeHandler}
+              value={newExpenseData.price}
+              name="price"
             />
           </div>
           <div className="new-expense__control">
@@ -52,8 +69,9 @@ const AddExpense = () => {
               type="date"
               min="2022-01-01"
               max="2026-12-31"
-              onChange={dateChangeHandler}
-              value={date}
+              onChange={inputsChangeHandler}
+              value={newExpenseData.date}
+              name="date"
             />
           </div>
         </div>
