@@ -9,19 +9,19 @@ const AddExpense = ({ getData }) => {
     price: "",
     date: "",
   });
-  const titleChangeHandler = (event) => {
-    setTitle(event.target.value);
-    // setNewExpenseData({ ...newExpenseData, title: event.target.value });
-    setNewExpenseData((prevState) => {
-      return { ...prevState, title: event.target.value };
-    });
-  };
-  const priceChangeHandler = (event) => {
-    setPrice(event.target.value);
-  };
-  const dateChangeHandler = (event) => {
-    setDate(event.target.value);
-  };
+  // const titleChangeHandler = (event) => {
+  //   setTitle(event.target.value);
+  //   // setNewExpenseData({ ...newExpenseData, title: event.target.value });
+  //   setNewExpenseData((prevState) => {
+  //     return { ...prevState, title: event.target.value };
+  //   });
+  // };
+  // const priceChangeHandler = (event) => {
+  //   setPrice(event.target.value);
+  // };
+  // const dateChangeHandler = (event) => {
+  //   setDate(event.target.value);
+  // };
   const inputsChangeHandler = ({ target }) => {
     const { name, value } = target;
     setNewExpenseData((prevState) => {
@@ -30,7 +30,12 @@ const AddExpense = ({ getData }) => {
   };
   const handelSubmit = (event) => {
     event.preventDefault();
-    getData(newExpenseData);
+    getData({
+      id: Math.random().toString(),
+      title: newExpenseData.title,
+      price: newExpenseData.price * 1,
+      date: new Date(newExpenseData.date),
+    });
     setNewExpenseData({
       title: "",
       price: "",
