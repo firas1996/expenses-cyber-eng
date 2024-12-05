@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./AddExpense.css";
 const AddExpense = ({ getData }) => {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [date, setDate] = useState("");
+  const [toggelFormd, setToggelFormd] = useState(false);
   const [newExpenseData, setNewExpenseData] = useState({
     title: "",
     price: "",
@@ -28,6 +29,9 @@ const AddExpense = ({ getData }) => {
       return { ...prevState, [name]: value };
     });
   };
+  const handelForm = () => {
+    setToggelFormd(!toggelFormd);
+  };
   const handelSubmit = (event) => {
     event.preventDefault();
     getData({
@@ -44,49 +48,55 @@ const AddExpense = ({ getData }) => {
   };
   return (
     <div className="new-expense">
-      <form onSubmit={handelSubmit}>
-        <div className="new-expense__controls">
-          <div className="new-expense__control">
-            <label>Title</label>
-            <input
-              required
-              placeholder="Title"
-              onChange={inputsChangeHandler}
-              value={newExpenseData.title}
-              name="title"
-            />
+      {toggelFormd ? (
+        <form onSubmit={handelSubmit}>
+          <div className="new-expense__controls">
+            <div className="new-expense__control">
+              <label>Title</label>
+              <input
+                required
+                placeholder="Title"
+                onChange={inputsChangeHandler}
+                value={newExpenseData.title}
+                name="title"
+              />
+            </div>
+            <div className="new-expense__control">
+              <label>Price</label>
+              <input
+                required
+                placeholder="Price"
+                type="number"
+                min="0"
+                step="0.01"
+                onChange={inputsChangeHandler}
+                value={newExpenseData.price}
+                name="price"
+              />
+            </div>
+            <div className="new-expense__control">
+              <label>Date</label>
+              <input
+                required
+                type="date"
+                min="2022-01-01"
+                max="2026-12-31"
+                onChange={inputsChangeHandler}
+                value={newExpenseData.date}
+                name="date"
+              />
+            </div>
           </div>
-          <div className="new-expense__control">
-            <label>Price</label>
-            <input
-              required
-              placeholder="Price"
-              type="number"
-              min="0"
-              step="0.01"
-              onChange={inputsChangeHandler}
-              value={newExpenseData.price}
-              name="price"
-            />
+          <div className="new-expense__actions">
+            <button type="button" onClick={handelForm}>
+              Cancel
+            </button>
+            <button type="submit">Add Expense</button>
           </div>
-          <div className="new-expense__control">
-            <label>Date</label>
-            <input
-              required
-              type="date"
-              min="2022-01-01"
-              max="2026-12-31"
-              onChange={inputsChangeHandler}
-              value={newExpenseData.date}
-              name="date"
-            />
-          </div>
-        </div>
-        <div className="new-expense__actions">
-          <button>Cancel</button>
-          <button type="submit">Add Expense</button>
-        </div>
-      </form>
+        </form>
+      ) : (
+        <button onClick={handelForm}>Show Add expenses form</button>
+      )}
     </div>
   );
 };
